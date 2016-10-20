@@ -14,6 +14,7 @@
 * fixedColumns - Number - Default: 0
 * footer - Boolean - Default: false
 * cloneHeadToFoot - Boolean - Default: false
+* cloneEvents - Boolean - Default: false
 * autoShow - Boolean - Default: true
 * altClass - String - Default: none
 * themeClass - String - Default: none
