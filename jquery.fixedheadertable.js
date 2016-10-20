@@ -34,6 +34,7 @@
       autoShow:        true, // hide table after its created
       footer:          false, // show footer
       cloneHeadToFoot: false, // clone head and use as footer
+      cloneEvents:     false, // clone events (useful if header or first row contain active elements)
       autoResize:      false, // resize table if its parent wrapper changes size
       create:          null // callback after plugin completes
     };
@@ -135,7 +136,7 @@
             .addClass(settings.originalTable.attr('class'))
             .attr('style', settings.originalTable.attr('style'));
 
-          $thead.clone().appendTo($divHead.find('table'));
+          $thead.clone(settings.cloneEvents).appendTo($divHead.find('table'));
         } else {
           $divHead = $wrapper.find('div.fht-thead');
         }
@@ -436,7 +437,7 @@
         // clone header
         $thead.appendTo($fixedColumn)
           .find('tr')
-          .append($firstThChildren.clone());
+          .append($firstThChildren.clone(settings.cloneEvents));
 
         $tbody.appendTo($fixedColumn)
           .css({
@@ -453,7 +454,7 @@
             }
           }
 
-          $(this).clone()
+          $(this).clone(settings.cloneEvents)
             .appendTo($newRow);
         });
 
@@ -496,7 +497,7 @@
           helpers._fixHeightWithCss($firstTdFootChild, tableProps);
           $tfoot.appendTo($fixedColumn)
             .find('tr')
-            .append($firstTdFootChild.clone());
+            .append($firstTdFootChild.clone(settings.cloneEvents));
           // Set (view width) of $tfoot div to width of table (this accounts for footers with a colspan)
           footwidth = $tfoot.find('table').innerWidth();
           $tfoot.css({
@@ -531,7 +532,7 @@
 
             $divFoot.empty();
             $divHead.find('table')
-              .clone()
+              .clone(settings.cloneEvents)
               .appendTo($divFoot);
 
             break;
